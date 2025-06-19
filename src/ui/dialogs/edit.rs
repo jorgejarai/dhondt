@@ -17,8 +17,8 @@ use crate::ui::{
 use super::{confirm::confirm_delete, error_msgbox};
 
 pub fn edit_party(s: &mut Cursive, index: usize) {
-    let party = read_input(s, "party").unwrap();
-    let name = read_input(s, "name").unwrap();
+    let party = read_input(s, "edit_party").unwrap();
+    let name = read_input(s, "edit_name").unwrap();
 
     if party.trim().is_empty() {
         error_msgbox(s, "Please provide a party name");
@@ -72,7 +72,7 @@ pub fn edit_party(s: &mut Cursive, index: usize) {
         return;
     }
 
-    let votes = read_input(s, "votes").unwrap();
+    let votes = read_input(s, "edit_votes").unwrap();
     let votes = validate_number(s, votes.as_str());
     if let Ok(votes) = votes {
         s.call_on_name(
