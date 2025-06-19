@@ -1,4 +1,5 @@
 use cursive::Cursive;
+use str;
 
 use super::dialogs::error_msgbox;
 
@@ -8,7 +9,9 @@ pub enum IntValidationError {
 }
 
 pub fn validate_number(s: &mut Cursive, number: &str) -> Result<u32, IntValidationError> {
-    match number.parse::<u32>() {
+    let unformatted_number = str::replace(number, " ", "");
+
+    match unformatted_number.parse::<u32>() {
         Ok(val) if val > 0 => Ok(val),
         Ok(_) => {
             error_msgbox(s, "The number must be a positive integer");
